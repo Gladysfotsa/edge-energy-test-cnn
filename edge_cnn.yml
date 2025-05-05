@@ -1,0 +1,23 @@
+---
+name: Edge - CNN
+author: Gladysfotsa <gladysfotsa99@gmail.com>
+description: Benchmarking Microsoft Edge loading CNN.com
+
+architecture: Linux
+
+services:
+  edge-container:
+    image: gladysfotsa/edge_energy_image
+    environment:
+      URL_TO_VISIT: "https://www.cnn.com"
+    command: /usr/local/bin/edge-entry.sh
+
+flow:
+  - name: Load CNN.com in Edge
+    container: edge-container
+    commands:
+      - type: console
+        command: echo "Opening CNN.com with Edge..."
+      - type: console
+        command: sleep 30
+        note: Wait for Edge to load and render the page
